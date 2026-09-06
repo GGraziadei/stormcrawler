@@ -25,6 +25,14 @@ config:
   topology.max.spout.pending: 100
   topology.debug: false
 
+  # Batching of tuples between executors. With topology.producer.batch.dynamic
+  # enabled the batch size adapts between 1 and topology.producer.batch.size:
+  # it stays small under light load to keep latency low and grows under
+  # sustained load to preserve throughput. Keep the batch size below
+  # topology.max.spout.pending.
+  topology.producer.batch.size: 50
+  topology.producer.batch.dynamic: true
+
   fetcher.threads.number: 50
 
   # override the JVM parameters for the workers
